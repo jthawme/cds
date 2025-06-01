@@ -4,9 +4,12 @@ import svg from '@poppanator/sveltekit-svg';
 import FaviconManifest from 'vite-favicon-manifest';
 import DataPlugin from 'sveltekit-data-plugin';
 import { enhancedImages } from '@sveltejs/enhanced-img';
+import basicSsl from '@vitejs/plugin-basic-ssl';
 
 export default defineConfig({
 	plugins: [
+		basicSsl(),
+
 		DataPlugin(enhancedImages()),
 
 		sveltekit(),

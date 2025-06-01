@@ -33,5 +33,48 @@ export const api = {
 		get(obj, fetch) {
 			return fetcher(`/api/basic${paramsToString(obj)}`, {}, fetch).then((resp) => resp.json());
 		}
+	},
+	scan: {
+		/**
+		 *
+		 * @param {string} barcode
+		 * @param {typeof fetch} [fetch]
+		 * @returns
+		 */
+		barcode(barcode, fetch) {
+			return fetcher(
+				`/api/scan/barcode`,
+				{
+					method: 'POST',
+					body: JSON.stringify({
+						barcode
+					})
+				},
+				fetch
+			).then((resp) => resp.json());
+		}
+	},
+
+	release: {
+		/**
+		 *
+		 * @param {{title: string, resource_id: string, type: string}} barcode
+		 * @param {typeof fetch} [fetch]
+		 * @returns
+		 */
+		add({ title, resource_id, type }, fetch) {
+			return fetcher(
+				`/api/release/add`,
+				{
+					method: 'POST',
+					body: JSON.stringify({
+						title,
+						resource_id,
+						type
+					})
+				},
+				fetch
+			).then((resp) => resp.json());
+		}
 	}
 };
